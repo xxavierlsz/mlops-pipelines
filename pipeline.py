@@ -1,34 +1,3 @@
-# MLOps Pipelines
-
-[![License](https://img.github.com/badge/license/MIT/blue.svg)](https://opensource.org/licenses/MIT)
-[![Python](https://img.shields.io/badge/Python-3.9%2B-blue)](https://www.python.org/)
-
-Production-ready MLOps pipelines for continuous integration, delivery, and deployment of machine learning models. This repository provides templates and examples for building robust and automated ML workflows.
-
-## ✨ Features
-
--   **CI/CD for ML:** Automate model training, testing, and deployment.
--   **Experiment Tracking:** Integrate with tools like MLflow or Weights & Biases for experiment management.
--   **Model Registry:** Manage model versions and metadata.
--   **Monitoring & Alerting:** Set up monitoring for model performance and data drift.
--   **Infrastructure as Code:** Define ML infrastructure using tools like Terraform or CloudFormation.
-
-## 🚀 Getting Started
-
-### Installation
-
-```bash
-git clone https://github.com/xxavierlsz/mlops-pipelines.git
-cd mlops-pipelines
-pip install -r requirements.txt
-```
-
-### Usage
-
-Example of a simple MLOps pipeline for a classification model:
-
-```python
-# pipeline.py
 import os
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -41,7 +10,7 @@ import mlflow.sklearn
 def load_data(path="data/iris.csv"):
     # For demonstration, using a simple dataset
     if not os.path.exists(path):
-        # Create a dummy iris.csv if it doesn't exist
+        # Create a dummy iris.csv if it doesn\'t exist
         from sklearn.datasets import load_iris
         iris = load_iris()
         df = pd.DataFrame(data=iris.data, columns=iris.feature_names)
@@ -64,9 +33,9 @@ def train_model(X_train, y_train, n_estimators=100, max_depth=10):
 def evaluate_model(model, X_test, y_test):
     predictions = model.predict(X_test)
     accuracy = accuracy_score(y_test, predictions)
-    precision = precision_score(y_test, predictions, average=\"weighted\")
-    recall = recall_score(y_test, predictions, average=\"weighted\")
-    f1 = f1_score(y_test, predictions, average=\"weighted\")
+    precision = precision_score(y_test, predictions, average="weighted")
+    recall = recall_score(y_test, predictions, average="weighted")
+    f1 = f1_score(y_test, predictions, average="weighted")
 
     mlflow.log_metric("accuracy", accuracy)
     mlflow.log_metric("precision", precision)
@@ -79,7 +48,7 @@ def evaluate_model(model, X_test, y_test):
     print(f"F1 Score: {f1:.4f}")
     return accuracy
 
-if __name__ == \"__main__\":
+if __name__ == "__main__":
     # Ensure MLflow tracking is set up
     mlflow.set_tracking_uri("file:///tmp/mlruns") # Local tracking
     mlflow.set_experiment("MLOps_Classification_Pipeline")
@@ -101,23 +70,3 @@ if __name__ == \"__main__\":
     # Save model locally (for deployment simulation)
     joblib.dump(model, "model.pkl")
     print("Model saved as model.pkl")
-```
-
-To run the example:
-
-```bash
-python pipeline.py
-```
-
-## 🤝 Contributing
-
-Contributions are welcome! Please see `CONTRIBUTING.md` for details.
-
-## 📄 License
-
-This project is licensed under the MIT License - see the `LICENSE` file for details.
-
-## 📞 Contact
-
-Alexander Thorne - [alex.thorne.ai@example.com](mailto:alex.thorne.ai@example.com)
-Project Link: [https://github.com/xxavierlsz/mlops-pipelines](https://github.com/xxavierlsz/mlops-pipelines)
